@@ -15,10 +15,10 @@ import ThemeToggler from "@/components/ThemeToggler";
 const Navbar = () => {
   return (
     <div className="bg-violet-950 dark:bg-slate-700 text-white py-2 px-5 flex justify-between">
-      import Link from 'next/link';
       <Link href="/">
         <h1 className="font-bold">zee</h1>
       </Link>
+
       <div className="flex items-center">
         <ThemeToggler />
         <DropdownMenu>
