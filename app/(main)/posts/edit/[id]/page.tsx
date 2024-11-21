@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import posts from "@/data/posts";
 import { useToast } from "@/components/ui/use-toast";
+import { useParams } from "next/navigation"; // Next.js 13+ hook for dynamic routes
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -33,17 +34,11 @@ const formSchema = z.object({
   }),
 });
 
-interface PostEditPageProps {
-  params: {
-    id: string;
-  };
-}
-
-const PostEditPage = ({ params }: PostEditPageProps) => {
+const PostEditPage = () => {
+  const { id } = useParams(); // Get dynamic 'id' from URL
   const { toast } = useToast();
 
-  // Find the post based on the `id` in `params`
-  const post = posts.find((post) => post.id === params.id);
+  const post = posts.find((post) => post.id === id); // Find post by dynamic 'id'
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
